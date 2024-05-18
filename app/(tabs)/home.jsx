@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { Alert, FlatList, Image, View, Text, RefreshControl } from "react-native";
+import { ActivityIndicator, Alert, FlatList, Image, View, Text, RefreshControl } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 
 import SearchInput from "../../components/SearchInput.jsx";
@@ -45,39 +45,45 @@ export default function Home() {
 
   return (
     <SafeAreaView className="h-full">
-      <FlatList
-        data={randomPhotos}
-        keyExtractor={(item) => item.id}
-        renderItem={({ item }) => (
-          <PhotoCard photo={item} />
-        )}
-        ListHeaderComponent={() => (
-          <View className="my-6 px-4 space-y-6">
-            <View className="justify-between items-center flex-row mb-6">
-              <Text className="font-pmedium text-md">
-                Ready to explore?
-              </Text>
+      {isLoading ? (
+        <View className="flex-1 justify-center items-center">
+        <ActivityIndicator size="large" color="#AA1781" />
+      </View>
+      ) : (
+        <FlatList
+          data={randomPhotos}
+          keyExtractor={(item) => item.id}
+          renderItem={({ item }) => (
+            <PhotoCard photo={item} />
+          )}
+          ListHeaderComponent={() => (
+            <View className="my-6 px-4 space-y-6">
+              <View className="justify-between items-center flex-row mb-6">
+                <Text className="font-pmedium text-md">
+                  Ready to explore?
+                </Text>
 
-              <Image
-                source={logo}
-                alt="logo of pick a pic"
-                className="w-9 h-10"
-                resizeMode="contain"
-              />
+                <Image
+                  source={logo}
+                  alt="logo of pick a pic"
+                  className="w-9 h-10"
+                  resizeMode="contain"
+                />
+              </View>
+
+              <SearchInput />
+
+              <View className="w-full flex-1 pt-5 pb-8">
+                <Text className="text-lg font-pregular">
+                  You may like...
+                </Text>
+              </View>
             </View>
-
-            <SearchInput />
-
-            <View className="w-full flex-1 pt-5 pb-8">
-              <Text className="text-lg font-pregular">
-                You may like...
-              </Text>
-            </View>
-          </View>
-        )}
-        ListEmptyComponent={() => <EmptyState /> }
-        refreshControl={<RefreshControl refreshing={refreshing} onRefresh={onRefresh} />}
-      />
+          )}
+          ListEmptyComponent={() => <EmptyState /> }
+          refreshControl={<RefreshControl refreshing={refreshing} onRefresh={onRefresh} />}
+        />
+      )}
     </SafeAreaView>
   )
 };
