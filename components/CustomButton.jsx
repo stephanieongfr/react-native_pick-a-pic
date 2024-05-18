@@ -1,16 +1,35 @@
-import { Text, Pressable } from "react-native";
+import { Text, Pressable, StyleSheet } from "react-native";
 
-const CustomButton = ({ title, handlePress, containerStyle, textStyle }) => {
+const CustomButton = ({ title, handlePress }) => {
   return (
     <Pressable
       onPress={handlePress}
-      className={`rounded-full min-h-[62px] flex justify-center items-center ${containerStyle}`}
+      style={({ pressed }) => [
+        {
+          opacity: pressed ? 0.5 : 1,
+        },
+        styles.button,
+      ]}
     >
-      <Text className={`${textStyle} font-psemibold text-lg`}>
+      <Text className={"text-white font-psemibold text-lg"}>
         {title}
       </Text>
     </Pressable>
   )
 }
+
+const styles = StyleSheet.create({
+  button: {
+    display: "block",
+    margin: "0 auto",
+    borderRadius: 50,
+    minHeight: 62,
+    justifyContent: "center",
+    alignItems: "center",
+    backgroundColor: "#AA1781",
+    paddingLeft: 34,
+    paddingRight: 34,
+  },
+});
 
 export default CustomButton;
