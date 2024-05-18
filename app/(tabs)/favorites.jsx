@@ -45,6 +45,7 @@ const renderFooter = () => {
 
 export default function Favorites() {
   const bookmark = useSelector((state) => state.bookmark.items);
+  const dispatch = useDispatch();
 
   return (
     <SafeAreaView className="h-full">
