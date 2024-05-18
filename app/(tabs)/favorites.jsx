@@ -16,12 +16,10 @@ const renderFooter = () => {
   const dispatch = useDispatch();
 
   return (
-    <View className="mb-10">
+    <View className="m-10">
       <CustomButton
         title="Discard all my favorites"
         handlePress={() => dispatch(clearAllItems())}
-        containerStyle="block m-auto bg-primary my-8 w-[60vw]"
-        textStyle="text-white"
       />
     </View>
   )

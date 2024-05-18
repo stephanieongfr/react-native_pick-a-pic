@@ -21,17 +21,13 @@ export default function App() {
             <Text className="text-primary text-3xl font-psemibold">Pick a Pic</Text>
           </View>
 
-          <View>
-            <Text className="text-3xl font-psemibold">Find Inspiration{"\n"} and{" "}
-              <Text className="text-primary">Pick a Pic</Text>
-            </Text>
-          </View>
+          <Text className="text-3xl font-psemibold mb-8">Find Inspiration{"\n"} and{" "}
+            <Text className="text-primary">Pick a Pic</Text>
+          </Text>
 
           <CustomButton
             title="Start exploring"
             handlePress={() => router.push("/home")}
-            containerStyle="bg-primary mt-6 w-[70vw]"
-            textStyle="text-white"
           />
         </View>
       </ScrollView>

@@ -1,18 +1,12 @@
-import { Text, View, Image, ScrollView } from 'react-native';
+import { Text, View, Image, ScrollView } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
-import { useLocalSearchParams } from "expo-router";
-
 import { useSelector, useDispatch } from "react-redux";
-import { addItem } from "../../store/bookmarkSlice.js";
 
-import BookmarkButton from '../../../components/BookmarkBtn.jsx';
+import { addItem } from "../../store/bookmarkSlice.js";
+import CustomButton from "../../../components/CustomButton.jsx";
 
 const PhotoById = () => {
-  // const { id, alt_description, description, regular, author, avatar, date, likes, views  } = useLocalSearchParams();
-
-  const bookmark = useSelector((state) => state.bookmark.items);
   const dispatch = useDispatch();
-
   const photo = useSelector((state) => state.photo);
 
   return (
@@ -31,7 +25,7 @@ const PhotoById = () => {
             />
         </View>
         </View>
-        <View className="w-full h-80 rounded-xl mt-3 relative justify-center items-center">
+        <View className="w-full h-80 rounded-xl mt-3 relative justify-center items-center mb-8">
           <Image
             source={{ uri: photo.urls.regular }}
             alt={photo.alt_description}
@@ -40,14 +34,12 @@ const PhotoById = () => {
             />
         </View>
 
-        <BookmarkButton
+        <CustomButton
           title="Save to my favorites"
           handlePress={() => dispatch(addItem(photo))}
-          containerStyle="bg-primary my-8 w-[60vw]"
-          textStyle="text-white"
         />
 
-        <View className="w-full">
+        <View className="w-full mt-8">
           <Text className="text-left font-psemibold text-md underline">More details about this photo</Text>
           <Text className="text-left text-md">
             Description: {photo.description === null ? "N/A" : photo.description}
