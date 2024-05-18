@@ -1,5 +1,5 @@
 import { router } from "expo-router";
-import { View, Text, FlatList, Pressable, Image } from "react-native";
+import { Alert, View, Text, FlatList, Pressable, Image } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { useDispatch, useSelector } from "react-redux";
 import { removeItem, clearAllItems } from "../store/bookmarkSlice.js";
@@ -15,11 +15,29 @@ const renderHeader = () => (
 const renderFooter = () => {
   const dispatch = useDispatch();
 
+  function handleDiscardAllItems() {
+    Alert.alert(
+      "Confirmation",
+      "Are you sure you want to delete all of your favorite pictures?",
+      [
+        {
+          text: "Cancel",
+          style: "cancel"
+        },
+        {
+          text: "OK",
+          onPress: () => dispatch(clearAllItems())
+        }
+      ],
+      { cancelable: true }
+    );
+  }
+
   return (
     <View className="m-10">
       <CustomButton
         title="Discard all my favorites"
-        handlePress={() => dispatch(clearAllItems())}
+        handlePress={handleDiscardAllItems}
       />
     </View>
   )
