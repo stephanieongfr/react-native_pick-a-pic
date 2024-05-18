@@ -12,21 +12,23 @@ const renderHeader = () => (
   </View>
 );
 
-const renderFooter = () => (
-  <View className="mb-10">
-    <CustomButton
-      title="Discard all my favorites"
-      handlePress={() => dispatch(clearAllItems())}
-      containerStyle="block m-auto bg-primary my-8 w-[60vw]"
-      textStyle="text-white"
-    />
-  </View>
-);
+const renderFooter = () => {
+  const dispatch = useDispatch();
+
+  return (
+    <View className="mb-10">
+      <CustomButton
+        title="Discard all my favorites"
+        handlePress={() => dispatch(clearAllItems())}
+        containerStyle="block m-auto bg-primary my-8 w-[60vw]"
+        textStyle="text-white"
+      />
+    </View>
+  )
+};
 
 export default function Favorites() {
   const bookmark = useSelector((state) => state.bookmark.items);
-  const dispatch = useDispatch();
-  console.log(`Mes favoris sont: ${bookmark}`);
 
   return (
     <SafeAreaView className="h-full">
