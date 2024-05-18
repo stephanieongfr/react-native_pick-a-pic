@@ -1,13 +1,16 @@
 import { Tabs } from "expo-router";
 import FontAwesome from "@expo/vector-icons/FontAwesome";
+import { Platform } from "react-native";
 
 export default function TabsLayout() {
+  const tabBarHeight = Platform.OS === "ios" ? 80 : 58;
+
   return (
     <Tabs
       screenOptions={{
         tabBarActiveTintColor: "#AA1781",
         tabBarStyle: {
-          height: 58,
+          height: tabBarHeight,
         },
       }}
     >
