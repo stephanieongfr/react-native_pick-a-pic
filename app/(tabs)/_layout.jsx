@@ -20,12 +20,8 @@ export default function TabsLayout() {
           title: "Home",
           headerShown: false,
           tabBarIcon: ({ color }) => (
-            <FontAwesome
-              name="home"
-              size={30}
-              color={color}
-            />
-          )
+            <FontAwesome name="home" size={30} color={color} />
+          ),
         }}
       />
       <Tabs.Screen
@@ -34,12 +30,8 @@ export default function TabsLayout() {
           title: "Favorites",
           headerShown: false,
           tabBarIcon: ({ color }) => (
-            <FontAwesome
-              name="heart"
-              size={30}
-              color={color}
-            />
-          )
+            <FontAwesome name="heart" size={30} color={color} />
+          ),
         }}
       />
       <Tabs.Screen
@@ -57,5 +49,5 @@ export default function TabsLayout() {
         }}
       />
     </Tabs>
-  )
-};
+  );
+}

@@ -1,5 +1,14 @@
 import { combineReducers, configureStore } from "@reduxjs/toolkit";
-import { persistStore, persistReducer, FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER } from "redux-persist";
+import {
+  persistStore,
+  persistReducer,
+  FLUSH,
+  REHYDRATE,
+  PAUSE,
+  PERSIST,
+  PURGE,
+  REGISTER,
+} from "redux-persist";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 
 import bookmarkReducer from "./bookmarkSlice";
@@ -10,10 +19,13 @@ const persistConfig = {
   storage: AsyncStorage,
 };
 
-const persistedReducer = persistReducer(persistConfig, combineReducers({
-  bookmark: bookmarkReducer,
-  photo: photoReducer,
-}));
+const persistedReducer = persistReducer(
+  persistConfig,
+  combineReducers({
+    bookmark: bookmarkReducer,
+    photo: photoReducer,
+  }),
+);
 
 export const store = configureStore({
   reducer: persistedReducer,

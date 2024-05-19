@@ -9,10 +9,12 @@ export const bookmarkSlice = createSlice({
   initialState,
   reducers: {
     addItem: (state, action) => {
-      const existingItem = state.items.find((item) => item.id === action.payload.id);
+      const existingItem = state.items.find(
+        (item) => item.id === action.payload.id,
+      );
       // if the item already exists, don't add it again
       if (existingItem) {
-        alert("This photo is already in your favorites")
+        alert("This photo is already in your favorites");
       } else {
         state.items.push(action.payload);
       }
@@ -24,8 +26,8 @@ export const bookmarkSlice = createSlice({
 
     clearAllItems: (state) => {
       state.items = [];
-    }
-  }
+    },
+  },
 });
 
 export const { addItem, removeItem, clearAllItems } = bookmarkSlice.actions;

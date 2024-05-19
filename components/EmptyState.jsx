@@ -11,14 +11,10 @@ const EmptyState = ({ title, subtitle }) => {
         resizeMode="contain"
       />
 
-      <Text className="text-xl text-center font-psemibold mt-2">
-        {title}
-      </Text>
-      <Text className="font-pmedium text-sm">
-        {subtitle}
-      </Text>
+      <Text className="text-xl text-center font-psemibold mt-2">{title}</Text>
+      <Text className="font-pmedium text-sm">{subtitle}</Text>
     </View>
-  )
-}
+  );
+};
 
 export default EmptyState;

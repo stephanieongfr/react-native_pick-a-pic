@@ -6,13 +6,13 @@ import { removeItem, clearAllItems } from "../store/bookmarkSlice.js";
 import CustomButton from "../../components/CustomButton.jsx";
 import FontAwesome from "@expo/vector-icons/FontAwesome";
 
-const renderHeader = () => (
+const RenderHeader = () => (
   <View>
     <Text className="text-lg font-psemibold mb-10">My favorite pictures</Text>
   </View>
 );
 
-const renderFooter = () => {
+const RenderFooter = () => {
   const dispatch = useDispatch();
 
   function handleDiscardAllItems() {
@@ -22,14 +22,14 @@ const renderFooter = () => {
       [
         {
           text: "Cancel",
-          style: "cancel"
+          style: "cancel",
         },
         {
           text: "OK",
-          onPress: () => dispatch(clearAllItems())
-        }
+          onPress: () => dispatch(clearAllItems()),
+        },
       ],
-      { cancelable: true }
+      { cancelable: true },
     );
   }
 
@@ -40,7 +40,7 @@ const renderFooter = () => {
         handlePress={handleDiscardAllItems}
       />
     </View>
-  )
+  );
 };
 
 export default function Favorites() {
@@ -51,7 +51,9 @@ export default function Favorites() {
     <SafeAreaView className="h-full">
       {!bookmark.length ? (
         <View className="h-full flex flex-col justify-center items-center px-2 pt-6">
-          <Text className="text-lg mb-20">You haven't saved any photos yet</Text>
+          <Text className="text-lg mb-20">
+            You haven't saved any photos yet
+          </Text>
           <Text className="font-psemibold text-2xl">
             <CustomButton
               title="Find inspiration here"
@@ -78,17 +80,13 @@ export default function Favorites() {
                   onPress={() => dispatch(removeItem(item))}
                   className="absolute top-1 right-1"
                 >
-                  <FontAwesome
-                    name="trash"
-                    size={24}
-                    color="#71717a"
-                  />
+                  <FontAwesome name="trash" size={24} color="#71717a" />
                 </Pressable>
               </View>
             </View>
           )}
-          ListHeaderComponent={renderHeader}
-          ListFooterComponent={renderFooter}
+          ListHeaderComponent={RenderHeader}
+          ListFooterComponent={RenderFooter}
           contentContainerStyle={{ flexGrow: 1, padding: 16 }}
           numColumns={2}
         />

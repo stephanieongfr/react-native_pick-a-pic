@@ -1,5 +1,13 @@
 import { useState, useEffect } from "react";
-import { ActivityIndicator, Alert, FlatList, Image, View, Text, RefreshControl } from "react-native";
+import {
+  ActivityIndicator,
+  Alert,
+  FlatList,
+  Image,
+  View,
+  Text,
+  RefreshControl,
+} from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 
 import SearchInput from "../../components/SearchInput.jsx";
@@ -18,10 +26,12 @@ export default function Home() {
   const getRandomPhotos = async () => {
     setIsLoading(true);
     try {
-      const result = await fetch(`${BASE_URL}/photos/random?client_id=${KEY}&count=8`);
+      const result = await fetch(
+        `${BASE_URL}/photos/random?client_id=${KEY}&count=8`,
+      );
 
       if (!result.ok) throw new Error("Could not find random photos");
-      
+
       const data = await result.json();
       setRandomPhotos(data);
     } catch (error) {
@@ -29,10 +39,10 @@ export default function Home() {
     } finally {
       setIsLoading(false);
     }
-  }
-  
+  };
+
   useEffect(() => {
-    getRandomPhotos()
+    getRandomPhotos();
   }, []);
 
   const refetch = () => getRandomPhotos();
@@ -41,27 +51,23 @@ export default function Home() {
     setRefreshing(true);
     await refetch();
     setRefreshing(false);
-  }
+  };
 
   return (
     <SafeAreaView className="h-full">
       {isLoading ? (
         <View className="flex-1 justify-center items-center">
-        <ActivityIndicator size="large" color="#AA1781" />
-      </View>
+          <ActivityIndicator size="large" color="#AA1781" />
+        </View>
       ) : (
         <FlatList
           data={randomPhotos}
           keyExtractor={(item) => item.id}
-          renderItem={({ item }) => (
-            <PhotoCard photo={item} />
-          )}
+          renderItem={({ item }) => <PhotoCard photo={item} />}
           ListHeaderComponent={() => (
             <View className="my-6 px-4 space-y-6">
               <View className="justify-between items-center flex-row mb-6">
-                <Text className="font-pmedium text-md">
-                  Ready to explore?
-                </Text>
+                <Text className="font-pmedium text-md">Ready to explore?</Text>
 
                 <Image
                   source={logo}
@@ -74,16 +80,16 @@ export default function Home() {
               <SearchInput />
 
               <View className="w-full flex-1 pt-5 pb-8">
-                <Text className="text-lg font-pregular">
-                  You may like...
-                </Text>
+                <Text className="text-lg font-pregular">You may like...</Text>
               </View>
             </View>
           )}
-          ListEmptyComponent={() => <EmptyState /> }
-          refreshControl={<RefreshControl refreshing={refreshing} onRefresh={onRefresh} />}
+          ListEmptyComponent={() => <EmptyState />}
+          refreshControl={
+            <RefreshControl refreshing={refreshing} onRefresh={onRefresh} />
+          }
         />
       )}
     </SafeAreaView>
-  )
-};
+  );
+}

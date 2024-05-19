@@ -11,12 +11,10 @@ const CustomButton = ({ title, handlePress }) => {
         styles.button,
       ]}
     >
-      <Text className={"text-white font-psemibold text-lg"}>
-        {title}
-      </Text>
+      <Text className={"text-white font-psemibold text-lg"}>{title}</Text>
     </Pressable>
-  )
-}
+  );
+};
 
 const styles = StyleSheet.create({
   button: {

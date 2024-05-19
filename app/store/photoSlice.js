@@ -4,10 +4,9 @@ export const photoSlice = createSlice({
   name: "bookmark",
   initialState: null,
   reducers: {
-    setPhoto: (state, action) => action.payload
+    setPhoto: (state, action) => action.payload,
   },
 });
-
 
 export const { setPhoto } = photoSlice.actions;
 

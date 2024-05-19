@@ -5,7 +5,7 @@ module.exports = {
     extend: {
       colors: {
         primary: "#AA1781", // framboise
-        secondary: "#023047" // dark blue
+        secondary: "#023047", // dark blue
       },
       fontFamily: {
         pthin: ["Poppins-Thin", "sans-serif"],
@@ -17,9 +17,8 @@ module.exports = {
         pbold: ["Poppins-Bold", "sans-serif"],
         pextrabold: ["Poppins-ExtraBold", "sans-serif"],
         pblack: ["Poppins-Black", "sans-serif"],
-      }
+      },
     },
   },
   plugins: [],
-}
-
+};

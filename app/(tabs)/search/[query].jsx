@@ -1,6 +1,13 @@
 import { useLocalSearchParams } from "expo-router";
 import { useState, useEffect } from "react";
-import { ActivityIndicator, Alert, FlatList, Image, View, Text } from "react-native";
+import {
+  ActivityIndicator,
+  Alert,
+  FlatList,
+  Image,
+  View,
+  Text,
+} from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 
 import SearchInput from "../../../components/SearchInput.jsx";
@@ -16,27 +23,26 @@ const Search = () => {
   const [searchedPhotos, setSearchedPhotos] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
 
-  const getSearchedPhotos = async () => {
-    setIsLoading(true);
-    try {
-      const result = await fetch(`${BASE_URL}/search/photos?client_id=${KEY}&page=1&query=${query}`);
-      
-      if (!result.ok) throw new Error("Could not find photos");
-      
-      const data = await result.json();
-      setSearchedPhotos(data.results);
-
-    } catch (error) {
-      Alert.alert("Error", error.message);
-    } finally {
-      setIsLoading(false);
-    }
-  }
-  
   useEffect(() => {
-    getSearchedPhotos(query)
-  }, [query]);
+    const getSearchedPhotos = async () => {
+      setIsLoading(true);
+      try {
+        const result = await fetch(
+          `${BASE_URL}/search/photos?client_id=${KEY}&page=1&query=${query}`,
+        );
 
+        if (!result.ok) throw new Error("Could not find photos");
+
+        const data = await result.json();
+        setSearchedPhotos(data.results);
+      } catch (error) {
+        Alert.alert("Error", error.message);
+      } finally {
+        setIsLoading(false);
+      }
+    };
+    getSearchedPhotos(query);
+  }, [query]);
 
   return (
     <SafeAreaView className="h-full">
@@ -48,16 +54,12 @@ const Search = () => {
         <FlatList
           data={searchedPhotos}
           keyExtractor={(item) => item.id}
-          renderItem={({ item }) => (
-            <PhotoCard photo={item} />
-          )}
+          renderItem={({ item }) => <PhotoCard photo={item} />}
           ListHeaderComponent={() => (
             <View className="my-6 px-4 space-y-6">
               <View className="justify-between items-start flex-row mb-6">
                 <View>
-                  <Text className="font-pmedium text-sm">
-                    Search Results
-                  </Text>
+                  <Text className="font-pmedium text-sm">Search Results</Text>
                 </View>
 
                 <View className="mt-1.5">
@@ -71,7 +73,6 @@ const Search = () => {
               </View>
 
               <SearchInput />
-
             </View>
           )}
           ListEmptyComponent={() => (
@@ -83,7 +84,7 @@ const Search = () => {
         />
       )}
     </SafeAreaView>
-  )
+  );
 };
 
 export default Search;

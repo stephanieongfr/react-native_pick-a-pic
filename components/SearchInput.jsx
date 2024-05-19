@@ -27,11 +27,8 @@ export default function SearchInput() {
           else router.push(`/search/${query}`);
         }}
       >
-        <FontAwesome
-          name="search"
-          size={20}
-        />
+        <FontAwesome name="search" size={20} />
       </TouchableOpacity>
     </View>
-  )
-};
+  );
+}

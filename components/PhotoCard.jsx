@@ -11,24 +11,18 @@ const PhotoCard = ({ photo }) => {
       <View className="flex flex-row gap-3 items-start">
         <View className="flex justify-center items-center flex-row flex-1">
           <View className="w-[46px] h-[46px] rounded-lg border border-secondary flex justify-center items-center p-0.5">
-              <Image
-                source={{ uri: photo.user.profile_image.small }}
-                className="w-full h-full rounded-lg"
-                resizeMode="cover"
+            <Image
+              source={{ uri: photo.user.profile_image.small }}
+              className="w-full h-full rounded-lg"
+              resizeMode="cover"
             />
           </View>
 
           <View className="flex justify-center flex-1 ml-3 gap-y-1">
-            <Text
-              className="font-psemibold text-sm"
-              numberOfLines={1}
-            >
+            <Text className="font-psemibold text-sm" numberOfLines={1}>
               {photo.description}
             </Text>
-            <Text
-              className="text-xs font-pregular"
-              numberOfLines={1}
-            >
+            <Text className="text-xs font-pregular" numberOfLines={1}>
               {photo.user.name}
             </Text>
           </View>
@@ -39,7 +33,7 @@ const PhotoCard = ({ photo }) => {
         activeOpacity={0.7}
         onPress={() => {
           dispatch(setPhoto(photo));
-          router.push("/photos/[id]")
+          router.push("/photos/[id]");
         }}
         className="w-full h-60 rounded-xl mt-3 relative justify-center items-center"
       >
@@ -51,7 +45,7 @@ const PhotoCard = ({ photo }) => {
         />
       </Pressable>
     </View>
-  )
-}
+  );
+};
 
 export default PhotoCard;

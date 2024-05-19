@@ -11,8 +11,10 @@ const PhotoById = () => {
 
   return (
     <SafeAreaView className="h-full">
-      <ScrollView className="flex mt-14 mx-5" contentContainerStyle={{ alignItems: "center"}}>
-
+      <ScrollView
+        className="flex mt-14 mx-5"
+        contentContainerStyle={{ alignItems: "center" }}
+      >
         <View className="w-full px-2 mb-2">
           <Text>{photo.alt_description}</Text>
           <View className="flex flex-row justify-between items-center mt-2">
@@ -23,7 +25,7 @@ const PhotoById = () => {
               className="w-7 h-7 rounded-full"
               resizeMode="cover"
             />
-        </View>
+          </View>
         </View>
         <View className="w-full h-80 rounded-xl mt-3 relative justify-center items-center mb-8">
           <Image
@@ -31,7 +33,7 @@ const PhotoById = () => {
             alt={photo.alt_description}
             className="w-full h-full rounded-xl"
             resizeMode="contain"
-            />
+          />
         </View>
 
         <CustomButton
@@ -40,17 +42,22 @@ const PhotoById = () => {
         />
 
         <View className="w-full mt-8">
-          <Text className="text-left font-psemibold text-md underline">More details about this photo</Text>
-          <Text className="text-left text-md">
-            Description: {photo.description === null ? "N/A" : photo.description}
+          <Text className="text-left font-psemibold text-md underline">
+            More details about this photo
           </Text>
-          <Text className="text-left text-md">This photo was taken on {photo.created_at.slice(0, 10)}</Text>
+          <Text className="text-left text-md">
+            Description:{" "}
+            {photo.description === null ? "N/A" : photo.description}
+          </Text>
+          <Text className="text-left text-md">
+            This photo was taken on {photo.created_at.slice(0, 10)}
+          </Text>
           <Text className="text-left text-md">{photo.views} views</Text>
           <Text className="text-left text-md">{photo.likes} likes</Text>
         </View>
       </ScrollView>
     </SafeAreaView>
-  )
-}
+  );
+};
 
 export default PhotoById;
