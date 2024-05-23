@@ -3,6 +3,9 @@ import { Text, Pressable, StyleSheet } from "react-native";
 const CustomButton = ({ title, handlePress }) => {
   return (
     <Pressable
+      accessibilityLabel={title}
+      accessibilityRole="button"
+      accessibilityHint={`Press to ${title}`}
       onPress={handlePress}
       style={({ pressed }) => [
         {

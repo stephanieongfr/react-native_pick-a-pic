@@ -31,6 +31,9 @@ const PhotoCard = ({ photo }) => {
 
       <Pressable
         activeOpacity={0.7}
+        accessibilityRole="button"
+        accessibilityLabel="View photo details"
+        accessibilityHint="Press to be redirected to the photo details screen"
         onPress={() => {
           dispatch(setPhoto(photo));
           router.push("/photos/[id]");

@@ -77,6 +77,8 @@ export default function Favorites() {
                   resizeMode="cover"
                 />
                 <Pressable
+                  accessibilityLabel="Delete button"
+                  accessibilityRole="button"
                   onPress={() => dispatch(removeItem(item))}
                   className="absolute top-1 right-1"
                 >
